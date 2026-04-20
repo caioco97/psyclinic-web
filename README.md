@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PsyClinic Web
 
-## Getting Started
+Interface web do projeto **PsyClinic**, construída com Next.js para autenticação e acesso ao painel da aplicação.
 
-First, run the development server:
+> Este repositório contém o front-end (web). A API vive no mesmo monorepo/projeto e é consumida por este app.
+
+## ✨ Funcionalidades atuais
+
+- Login com validação de formulário.
+- Cadastro de usuário com validação de CPF, telefone e confirmação de senha.
+- Feedback visual com toasts e loader global durante requisições.
+- Rotas protegidas por middleware (`/dashboard`) e redirecionamentos automáticos de sessão.
+
+## 🧱 Stack
+
+- Next.js (App Router)
+- React
+- TypeScript
+- Tailwind CSS
+- React Hook Form + Zod
+- Sonner (toasts)
+
+## 🚀 Como rodar localmente
+
+### 1) Instalar dependências
+
+```bash
+npm install
+```
+
+### 2) Configurar variáveis de ambiente
+
+Copie o exemplo e ajuste a URL da sua API:
+
+```bash
+cp .env.example .env.local
+```
+
+Variável obrigatória:
+
+- `NEXT_PUBLIC_API_URL`: URL base da API (ex.: `http://localhost:3333`).
+
+### 3) Iniciar o projeto
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A aplicação ficará disponível em `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Estrutura resumida
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```text
+src/
+  app/
+    login/
+    register/
+    dashboard/
+    api/auth/         # rotas do Next que repassam requests para API
+  features/auth/      # serviços de autenticação
+  services/           # cliente HTTP
+  components/         # componentes compartilhados
+  lib/                # utilitários de loading global
+  utils/              # utilitários de toast
+```
 
-## Learn More
+## ✅ Scripts
 
-To learn more about Next.js, take a look at the following resources:
+- `npm run dev` — ambiente de desenvolvimento.
+- `npm run build` — build de produção.
+- `npm run start` — inicia app em produção.
+- `npm run lint` — validação de lint.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 💼 Sugestões para portfolio
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Se quiser fortalecer este projeto para recrutadores, próximos passos recomendados:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Adicionar testes (unitários + integração de formulários).
+2. Criar uma landing simples na rota `/` explicando o produto antes do login.
+3. Conectar dashboard a dados reais da API (em vez de números estáticos).
+4. Incluir CI (lint/build/test) em GitHub Actions.
+5. Publicar demo (Vercel) + screenshot/gif no README.
